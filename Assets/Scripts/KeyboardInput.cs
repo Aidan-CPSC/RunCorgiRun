@@ -1,0 +1,29 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class KeyboardInput : MonoBehaviour
+{
+    public Corgi Corgi;
+    
+    void Update()
+    {
+        Keyboard keyboard = Keyboard.current;
+        
+        if (keyboard.wKey.isPressed)
+        {
+            Corgi.Move(Vector2.up);
+        }
+        if (keyboard.aKey.isPressed)
+        {
+            Corgi.Move(Vector2.left);
+        }
+        if (keyboard.sKey.isPressed)
+        {
+            Corgi.Move(Vector2.down);
+        }
+        if (keyboard.dKey.isPressed)
+        {
+            Corgi.Move(Vector2.right);
+        }
+    }
+}
