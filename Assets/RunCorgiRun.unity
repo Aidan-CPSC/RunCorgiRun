@@ -1611,6 +1611,7 @@ MonoBehaviour:
   SoberSprite: {fileID: 21300000, guid: a9bcb60b003434732b96f9631d0fa566, type: 3}
   DrunkSprite: {fileID: 21300000, guid: 3b172c93ca449469f9bb5263b5bf80ea, type: 3}
   Ui: {fileID: 1503765928}
+  Game: {fileID: 2128517415}
 --- !u!50 &1594211743
 Rigidbody2D:
   serializedVersion: 5
