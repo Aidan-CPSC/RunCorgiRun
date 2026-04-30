@@ -4,7 +4,14 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     public UI Ui;
+    public Corgi Corgi;
     public GameTimer GameTimer;
+    public BeerPlacer BeerPlacer;
+    public BonePlacer BonePlacer;
+    public PillPlacer PillPlacer;
+    public MoonshinePlacer MoonshinePlacer;
+
+    private bool isGameRunning = false;
     
     void Start()
     {
@@ -17,16 +24,47 @@ public class Game : MonoBehaviour
         Ui.ShowTime();
     }
 
+    public bool IsPlaying()
+    {
+        return isGameRunning;
+    }
+
     public void OnStartButtonClicked()
     {
         Ui.HideStartScreen();
-        StartGame();
+        InitializeGame();
+    }
+
+    public void InitializeGame()
+    {
+        isGameRunning = true;
+        GameTimer.StartTimer(10, OnTimerFinished);
+        StartPlacers();
+        ScoreKeeper.ResetScore();
+        Ui.ResetScore();
+        Corgi.Reset();
+    }
+
+    private void StartPlacers()
+    {
+        BeerPlacer.StartPlacing();
+        BonePlacer.StartPlacing();
+        PillPlacer.StartPlacing();
+        MoonshinePlacer.StartPlacing();
+    }
+    
+    private void StopPlacers()
+    {
+        BeerPlacer.StopPlacing();
+        BonePlacer.StopPlacing();
+        PillPlacer.StopPlacing();
+        MoonshinePlacer.StopPlacing();
     }
 
     public void OnPlayAgainButtonClicked()
     {
         Ui.HideGameOverScreen();
-        StartGame();
+        InitializeGame();
     }
 
     private void StartGame()
@@ -36,6 +74,8 @@ public class Game : MonoBehaviour
 
     public void OnTimerFinished()
     {
+        isGameRunning = false;
         Ui.ShowGameOverScreen();
+        StopPlacers();
     }
 }

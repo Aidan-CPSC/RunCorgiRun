@@ -17,6 +17,8 @@ public class Corgi : MonoBehaviour
     private int randomMoveCounter = 0;
     private int lastRandomDirection = 0;
 
+    public Game Game;
+
     public void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -28,6 +30,15 @@ public class Corgi : MonoBehaviour
         {
             MoveRandomly();
         }
+    }
+
+    public void Reset()
+    {
+        isPlastered = false;
+        isDrunk = false;
+        ChangeToSoberSprite();
+        spriteRenderer.flipX = false;
+        transform.position = new Vector3(0,0,0);
     }
 
     private void MoveRandomly()
@@ -62,6 +73,7 @@ public class Corgi : MonoBehaviour
 
     public void MoveManually(Vector2 direction)
     {
+        if (!Game.IsPlaying()) return;
         if (!isPlastered)
         {
             Move(direction);

@@ -14,6 +14,11 @@ public class UI : MonoBehaviour
         ScoreText.text = "Score: " + score;
     }
 
+    public void ResetScore()
+    {
+        ScoreText.text = "Score: 0";
+    }
+    
     public void ShowTime()
     {
         TimeText.text = GameTimer.GetTimeAsString();
