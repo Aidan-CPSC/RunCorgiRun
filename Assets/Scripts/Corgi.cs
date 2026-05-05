@@ -21,6 +21,8 @@ public class Corgi : MonoBehaviour
     
     public Sounds Sounds;
 
+    public ParticleSystem BubbleParticles;
+
     public void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -134,6 +136,7 @@ public class Corgi : MonoBehaviour
         isPlastered = true;
         ChangeToDrunkSprite();
         StartSoberingUp();
+        BubbleParticles.Play();
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -164,6 +167,7 @@ public class Corgi : MonoBehaviour
         isDrunk = true;
         ChangeToDrunkSprite();
         StartSoberingUp();
+        BubbleParticles.Play();
     }
 
     private void StartSoberingUp()
@@ -186,6 +190,7 @@ public class Corgi : MonoBehaviour
         isDrunk = false;
         isPlastered = false;
         ChangeToSoberSprite();
+        BubbleParticles.Stop();
     }
 
     private void ChangeToSoberSprite()
